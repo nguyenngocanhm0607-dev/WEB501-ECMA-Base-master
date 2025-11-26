@@ -1,52 +1,107 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 function ListPage() {
+  const [tours, setTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const API = "http://localhost:3001/tours";
+
+  // Fetch danh sách tour
+  const fetchTours = async () => {
+    setLoading(true);
+    try {
+      const res = await axios.get(API);
+      setTours(res.data);
+    } catch (err) {
+      setError(err.message);
+      toast.error("Lỗi tải dữ liệu: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Xóa tour
+  const handleDelete = async (id) => {
+    if (!confirm("Bạn chắc chắn muốn xóa tour này?")) return;
+    setLoading(true);
+    try {
+      await axios.delete(`${API}/${id}`);
+      setTours(tours.filter((t) => t.id !== id));
+      toast.success("Xóa tour thành công!");
+    } catch (err) {
+      setError(err.message);
+      toast.error("Lỗi xoá tour: " + err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchTours();
+  }, []);
+
+  if (loading) {
+    return <p className="p-6 text-gray-600">Đang tải dữ liệu...</p>;
+  }
+
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Danh sách</h1>
+      <h1 className="text-3xl font-bold mb-6">Danh sách Tours</h1>
 
-      <div className="overflow-x-auto">
-        <table className="w-full border border-gray-300 rounded-lg">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="px-4 py-2 border border-gray-300 text-left">#</th>
-              <th className="px-4 py-2 border border-gray-300 text-left">
-                First
-              </th>
-              <th className="px-4 py-2 border border-gray-300 text-left">
-                Last
-              </th>
-              <th className="px-4 py-2 border border-gray-300 text-left">
-                Handle
-              </th>
-            </tr>
-          </thead>
+      {tours.length === 0 ? (
+        <p className="text-gray-600 italic">Chưa có tour nào</p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full border border-gray-300 rounded-lg">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="px-4 py-2 border">#</th>
+                <th className="px-4 py-2 border">Ảnh</th>
+                <th className="px-4 py-2 border">Tên tour</th>
+                <th className="px-4 py-2 border">Điểm đến</th>
+                <th className="px-4 py-2 border">Thời lượng</th>
+                <th className="px-4 py-2 border">Giá</th>
+                <th className="px-4 py-2 border">Còn lại</th>
+                <th className="px-4 py-2 border">Hành động</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border border-gray-300">1</td>
-              <td className="px-4 py-2 border border-gray-300">Mark</td>
-              <td className="px-4 py-2 border border-gray-300">Otto</td>
-              <td className="px-4 py-2 border border-gray-300">@mdo</td>
-            </tr>
-
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border border-gray-300">2</td>
-              <td className="px-4 py-2 border border-gray-300">Jacob</td>
-              <td className="px-4 py-2 border border-gray-300">Thornton</td>
-              <td className="px-4 py-2 border border-gray-300">@fat</td>
-            </tr>
-
-            <tr className="hover:bg-gray-50">
-              <td className="px-4 py-2 border border-gray-300">3</td>
-              <td className="px-4 py-2 border border-gray-300" colSpan={2}>
-                Larry the Bird
-              </td>
-              <td className="px-4 py-2 border border-gray-300">@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+            <tbody>
+              {tours.map((tour, index) => (
+                <tr key={tour.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-2 border">{index + 1}</td>
+                  <td className="px-4 py-2 border">
+                    <img
+                      src={tour.image}
+                      alt={tour.name}
+                      className="w-24 h-16 object-cover rounded"
+                    />
+                  </td>
+                  <td className="px-4 py-2 border font-semibold">{tour.name}</td>
+                  <td className="px-4 py-2 border">{tour.destination}</td>
+                  <td className="px-4 py-2 border">{tour.duration}</td>
+                  <td className="px-4 py-2 border text-red-500 font-bold">
+                    {tour.price.toLocaleString()}₫
+                  </td>
+                  <td className="px-4 py-2 border">{tour.available}</td>
+                  <td className="px-4 py-2 border">
+                    <button
+                      onClick={() => handleDelete(tour.id)}
+                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      Xóa
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
-
-export default ListPage;
+export default ListPage
