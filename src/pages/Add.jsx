@@ -27,7 +27,7 @@ export default function AddPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Kiểm tra trường bắt buộc
+
     if (!formData.name || !formData.price) {
       toast.error("Vui lòng nhập tên và giá tour");
       return;
@@ -64,7 +64,7 @@ export default function AddPage() {
       <h1 className="text-2xl font-bold mb-6">Thêm Tour Mới</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name */}
+
         <div>
           <label className="block font-medium mb-1">Tên Tour</label>
           <input
@@ -76,7 +76,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Price */}
+
         <div>
           <label className="block font-medium mb-1">Giá</label>
           <input
@@ -88,7 +88,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Description */}
+
         <div>
           <label className="block font-medium mb-1">Mô tả</label>
           <textarea
@@ -99,7 +99,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Image URL */}
+
         <div>
           <label className="block font-medium mb-1">Ảnh (URL)</label>
           <input
@@ -111,7 +111,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Available */}
+
         <div>
           <label className="block font-medium mb-1">Còn lại</label>
           <input
@@ -123,7 +123,6 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Duration */}
         <div>
           <label className="block font-medium mb-1">Thời lượng</label>
           <input
@@ -135,7 +134,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Category */}
+
         <div>
           <label className="block font-medium mb-1">Category</label>
           <input
@@ -147,7 +146,7 @@ export default function AddPage() {
           />
         </div>
 
-        {/* Active */}
+
         <div className="flex items-center space-x-2">
           <input
             type="checkbox"
@@ -159,7 +158,6 @@ export default function AddPage() {
           <label className="text-gray-700">Kích hoạt</label>
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           disabled={loading}
