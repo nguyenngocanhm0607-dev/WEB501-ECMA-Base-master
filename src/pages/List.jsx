@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 function ListPage() {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -94,6 +95,13 @@ function ListPage() {
                     >
                       Xóa
                     </button>
+                    <a
+                      href={`/edit/${tour.id}`}
+                      className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                      Sửa
+                    </a>
+
                   </td>
                 </tr>
               ))}
