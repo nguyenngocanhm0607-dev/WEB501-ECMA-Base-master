@@ -12,19 +12,26 @@ function EditPage() {
     destination: "",
     duration: "",
     price: "",
+    description: "",
     available: "",
-    image: ""
+    image: "",
+    category: "tour nội địa",
+    active: true,
   });
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/tours/${id}`)
-      .then(res => setTour(res.data))
+    axios
+      .get(`http://localhost:3001/tours/${id}`)
+      .then((res) => setTour(res.data))
       .catch(() => toast.error("Lỗi tải dữ liệu!"));
   }, [id]);
+
   const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
     setTour({
       ...tour,
-      [e.target.name]: e.target.value
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -32,7 +39,7 @@ function EditPage() {
     e.preventDefault();
 
     try {
-      await axios.put(`http://127.0.0.1:3001/tours/${id}`, tour);
+      await axios.put(`http://localhost:3001/tours/${id}`, tour);
       toast.success("Cập nhật thành công!");
       navigate("/list");
     } catch {
@@ -51,6 +58,15 @@ function EditPage() {
           name="name"
           placeholder="Tên tour"
           value={tour.name}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+        />
+
+        <input
+          type="text"
+          name="destination"
+          placeholder="Điểm đến"
+          value={tour.destination}
           onChange={handleChange}
           className="w-full border p-2 rounded"
         />
@@ -90,6 +106,34 @@ function EditPage() {
           onChange={handleChange}
           className="w-full border p-2 rounded"
         />
+
+        <textarea
+          name="description"
+          placeholder="Mô tả"
+          value={tour.description}
+          onChange={handleChange}
+          className="w-full border p-2 rounded h-28"
+        ></textarea>
+
+        <select
+          name="category"
+          value={tour.category}
+          onChange={handleChange}
+          className="w-full border p-2 rounded"
+        >
+          <option value="tour nội địa">Tour nội địa</option>
+          <option value="tour quốc tế">Tour quốc tế</option>
+        </select>
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="active"
+            checked={tour.active}
+            onChange={handleChange}
+          />
+          Hoạt động (Active)
+        </label>
 
         <button
           type="submit"
