@@ -1,16 +1,6 @@
 {
   "tours": [
     {
-      "id": 3,
-      "name": "Đà Lạt 4N3D",
-      "destination": "Đà Lạt",
-      "duration": "4 ngày 3 đêm",
-      "price": 3200000,
-      "image": "https://picsum.photos/400/300?random=3",
-      "description": "Thành phố ngàn hoa với khí hậu mát mẻ quanh năm",
-      "available": 10
-    },
-    {
       "name": "h",
       "price": 8690000,
       "description": "hjhjk",
@@ -32,5 +22,6 @@
       "active": true,
       "id": 5
     }
-  ]
+  ],
+  "users": []
 }
