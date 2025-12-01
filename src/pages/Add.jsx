@@ -3,7 +3,7 @@ import { toast } from 'react-hot-toast'
 import axios from 'axios'
 
 function AddTourPage() {
-  // State từng field
+
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
   const [description, setDescription] = useState('')
@@ -17,7 +17,6 @@ function AddTourPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // Validation cơ bản
     if (!name.trim() || !price) {
       toast.error('Vui lòng nhập tên và giá tour')
       return
@@ -36,8 +35,6 @@ function AddTourPage() {
         active,
       })
       toast.success('Thêm tour thành công!')
-
-      // Reset form
       setName('')
       setPrice('')
       setDescription('')

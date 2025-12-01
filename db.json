@@ -20,6 +20,17 @@
       "category": "hhj",
       "active": true,
       "id": 4
+    },
+    {
+      "name": "trein",
+      "price": 5000000,
+      "description": "tour dep vui ve",
+      "image": "",
+      "available": 2,
+      "duration": "54",
+      "category": "Tour noi dia",
+      "active": true,
+      "id": 5
     }
   ]
 }

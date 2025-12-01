@@ -21,8 +21,6 @@ function EditPage() {
       .then(res => setTour(res.data))
       .catch(() => toast.error("Lỗi tải dữ liệu!"));
   }, [id]);
-
-  // update state
   const handleChange = (e) => {
     setTour({
       ...tour,
@@ -53,15 +51,6 @@ function EditPage() {
           name="name"
           placeholder="Tên tour"
           value={tour.name}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        />
-
-        <input
-          type="text"
-          name="destination"
-          placeholder="Điểm đến"
-          value={tour.destination}
           onChange={handleChange}
           className="w-full border p-2 rounded"
         />

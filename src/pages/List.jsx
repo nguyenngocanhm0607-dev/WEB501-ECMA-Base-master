@@ -10,7 +10,6 @@ function ListPage() {
 
   const API = "http://localhost:3001/tours";
 
-  // Fetch danh sách tour
   const fetchTours = async () => {
     setLoading(true);
     try {
@@ -24,7 +23,6 @@ function ListPage() {
     }
   };
 
-  // Xóa tour
   const handleDelete = async (id) => {
     if (!confirm("Bạn chắc chắn muốn xóa tour này?")) return;
     setLoading(true);
