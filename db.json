@@ -21,7 +21,24 @@
       "category": "Tour noi dia",
       "active": true,
       "id": 5
+    },
+    {
+      "name": "jjhgg s",
+      "price": 4515,
+      "description": "nfbhfed",
+      "image": "",
+      "available": 7,
+      "duration": "",
+      "category": "Tour noi dia",
+      "active": true,
+      "id": 6
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "nguyenngocanhm0607@gmail.com",
+      "password": "$2a$10$Q4uvOlJQ7IM53C4447rIxutvs6EIuCBOM35rg5z2UhJ0MkyDl8HR.",
+      "id": 1
+    }
+  ]
 }

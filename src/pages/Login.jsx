@@ -1,65 +1,53 @@
 import { useState } from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
 
 export default function LoginPage() {
     const navigate = useNavigate();
-    const [form, setForm] = useState({
-        email: "",
-        password: "",
-    });
+    const [form, setForm] = useState({ email: "", password: "" });
+
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const res = await axios.post("http://localhost:3000/login", form);
-
-            localStorage.setItem("token", res.data.accessToken);
-
+            localStorage.setItem("token", res.data.token);
+            navigate("/");
             toast.success("Đăng nhập thành công!");
-            navigate("/list");
-        } catch (error) {
-            toast.error("Sai tài khoản hoặc mật khẩu!");
+        } catch (err) {
+            toast.error(err.response?.data || "Sai tài khoản hoặc mật khẩu");
         }
     };
 
-    return (
-        <div className="max-w-md mx-auto p-6">
-            <h1 className="text-2xl font-semibold mb-4">Đăng nhập</h1>
 
-            <form onSubmit={handleLogin} className="space-y-4">
+    return (
+        <div className="p-4 max-w-md mx-auto">
+            <h2 className="text-xl mb-3">Đăng nhập</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
                 <input
-                    type="email"
+                    type="text"
                     name="email"
                     placeholder="Email"
                     value={form.email}
                     onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
+                    className="border p-2"
                 />
-
                 <input
                     type="password"
                     name="password"
-                    placeholder="Mật khẩu"
+                    placeholder="Password"
                     value={form.password}
                     onChange={handleChange}
-                    className="w-full border p-2 rounded"
-                    required
+                    className="border p-2"
                 />
-
-                <button
-                    className="w-full bg-green-600 text-white py-2 rounded mt-4"
-                    type="submit"
-                >
-                    Đăng nhập
-                </button>
+                <button className="bg-green-600 text-white p-2 rounded">Đăng nhập</button>
             </form>
         </div>
     );
