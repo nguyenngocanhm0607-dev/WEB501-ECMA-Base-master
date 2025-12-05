@@ -12,26 +12,28 @@
       "id": 4
     },
     {
-      "name": "trein",
-      "price": 5000000,
-      "description": "tour dep vui ve",
-      "image": "",
-      "available": 2,
-      "duration": "54",
+      "name": "Tour đà lạt",
+      "price": 4515,
+      "description": "tour đẹp ",
+      "image": "https://haycafe.vn/wp-content/uploads/2022/01/Hinh-anh-thung-lung-tinh-yeu-o-Da-Lat.jpg",
+      "available": 7,
+      "duration": "2",
       "category": "Tour noi dia",
       "active": true,
-      "id": 5
+      "id": 6,
+      "destination": "Đà Lạt"
     },
     {
-      "name": "jjhgg s",
-      "price": 4515,
-      "description": "nfbhfed",
-      "image": "",
+      "name": "njdhsjd",
+      "price": "3000000",
+      "description": "4562",
+      "image": "https://haycafe.vn/wp-content/uploads/2022/01/Hinh-anh-thung-lung-tinh-yeu-o-Da-Lat.jpg",
       "available": 7,
-      "duration": "",
-      "category": "Tour noi dia",
+      "duration": "3N2D",
+      "category": "tour nội địa",
       "active": true,
-      "id": 6
+      "id": 7,
+      "destination": "Đà Lạt"
     }
   ],
   "users": [
@@ -39,6 +41,11 @@
       "email": "nguyenngocanhm0607@gmail.com",
       "password": "$2a$10$Q4uvOlJQ7IM53C4447rIxutvs6EIuCBOM35rg5z2UhJ0MkyDl8HR.",
       "id": 1
+    },
+    {
+      "email": "hongocgiang789@gamil.com",
+      "password": "$2a$10$/lRorCZiQf7zhRGji3O3EuRcqMqh9QfmU80TD5Pwgehc5eeS0Z0oW",
+      "id": 2
     }
   ]
 }
